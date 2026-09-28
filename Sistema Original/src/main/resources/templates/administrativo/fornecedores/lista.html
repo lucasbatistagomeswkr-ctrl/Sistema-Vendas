@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+
+    <title>Sistema de Vendas</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" width="30" height="30" class="d-inline-block align-top" style="margin-right: 8px;" alt="">		
+        <a class="navbar-brand" href="#">Sistema de Vendas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Pesquisar</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container">
+        <table class="table" id="tabela">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CNPJ</th>
+					<th>Telefone</th>
+                    <th>Endereco</th>
+                    <th>Numero</th>
+                    <th>Bairro</th>
+                    <th>E-mail</th>
+                    <th>Cidade</th>
+                    <th>Ação</th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+				
+                <tr th:each="fornecedor : ${listaFornecedors}">
+                    <td th:text="${fornecedor.id}"></td>
+                    <td th:text="${fornecedor.nome}"></td>
+                    <td th:text="${fornecedor.cnpj}"></td>
+                    <td th:text="${fornecedor.telefone}"></td>
+                    <td th:text="${fornecedor.endereco}"></td>
+                    <td th:text="${fornecedor.numero}"></td>  
+                    <td th:text="${fornecedor.bairro}"></td>
+                    <td th:text="${fornecedor.email}"></td>
+					<td th:text="${fornecedor.cidade?.nome}"></td>
+                    
+                    <td>
+						
+                        <a th:href="@{/editarFornecedor/{id}(id=${fornecedor.id})}">
+                            <i class="fa-solid fa-pen-to-square" style="color: rgb(6, 124, 221);"></i>
+                        </a>
+                        <a th:href="@{/removerFornecedor/{id}(id=${fornecedor.id})}">
+                            <i class="fa-solid fa-trash-can" style="color: rgb(233, 32, 30);"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+		
+        <a href="/administrativo" class="btn btn-danger">
+            <i class="fa-solid fa-right-to-bracket" style="color: rgb(255, 255, 255);"></i> Voltar
+        </a>
+        <a href="/cadastroFornecedor" class="btn btn-primary">
+            <i class="fa-solid fa-plus" style="color: rgb(255, 255, 255);"></i> Cadastrar
+        </a>
+		
+
+    </div>
+
+    <!-- Optional JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+	    
+	<script>
+	    $(document).ready(function () {
+	        $('#tabela').DataTable({
+	            "language": {
+	                "url": "https://cdn.datatables.net/plug-ins/1.13.5/i18n/pt-BR.json"
+	            }
+	        });
+	    });
+	</script>
+	
+</body>
+</html>
