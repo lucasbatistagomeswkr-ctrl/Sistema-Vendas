@@ -22,6 +22,9 @@ public class Funcionario implements Serializable {
 	private String endereco;
 	private String telefone;
 	private String numero;
+	private String bairro;
+	private String email;
+	private String funcao;
 	public Long getId() {
 		return Id;
 	}
@@ -205,9 +208,7 @@ public class Funcionario implements Serializable {
 
 
 
-	private String bairro;
-	private String email;
-	private String funcao;
+	
 
 
 
